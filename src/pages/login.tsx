@@ -1,14 +1,12 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import * as authService from '../services/auth-service';
 import { useDispatch } from 'react-redux';
 import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from '../constants/redux-types';
+import * as authService from '../services/auth-service';
 import { transformLoginResponse } from '../utils/auth-transformer';
-import { useHistory } from 'react-router-dom';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const formik = useFormik({
     initialValues: {
@@ -20,23 +18,25 @@ export const LoginPage = () => {
       dispatch({
         type: LOGIN,
       });
-      authService.login({
-        email: values.email,
-        password: values.password,
-      }).then((res) => {
-        const response = transformLoginResponse(res);
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: response
+      authService
+        .login({
+          email: values.email,
+          password: values.password,
+        })
+        .then((res) => {
+          const response = transformLoginResponse(res);
+          dispatch({
+            type: LOGIN_SUCCESS,
+            payload: response,
+          });
+        })
+        .catch((error: any) => {
+          console.error(error);
+          dispatch({
+            type: LOGIN_FAIL,
+            error: error,
+          });
         });
-        history.push('/dashboard');
-      }).catch((error: any) => {
-        console.error(error);
-        dispatch({
-          type: LOGIN_FAIL,
-          error: error,
-        });
-      });
     },
   });
 
