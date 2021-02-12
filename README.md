@@ -1,3 +1,40 @@
+# React Auth Boilerplate
+
+This project is my personal boilerplate for projects that requires token based authentication. It is to go along with my other backend boilerplate project.
+
+## Project Structure
+
+```
+src
+├── components
+│   ├── forms
+│   └── routes
+├── constants
+├── interfaces
+│   ├── api
+│   ├── dto
+│   └── redux
+│       ├── actions
+│       └── states
+├── pages
+├── redux
+│   ├── actions
+│   └── reducers
+├── services
+└── utils
+```
+
+- src - root folder
+  - components : reusable components
+  - constants : constants
+  - interfaces > api : interfaces for apis
+  - interfaces > dto : interfaces for internal data passing
+  - interfaces > redux : interfaces for redux such as actions or states
+  - pages : base page components for each route
+  - redux : contains action creators and reducers
+  - services : contains function collection mainly for api
+  - utils : misc helper functions or utilities
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
