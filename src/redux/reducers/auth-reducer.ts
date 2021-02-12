@@ -2,19 +2,23 @@ import {
   LOGIN,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
 } from '../../constants/redux-types';
 import { AuthActionTypes } from '../../interfaces/redux/actions/auth-action-types';
-import { AuthState, AuthStatusState } from '../../interfaces/redux/states/auth-state';
+import {
+  AuthState,
+  AuthStatusState,
+} from '../../interfaces/redux/states/auth-state';
 
 const INITIAL_STATUS_STATE: AuthStatusState = {
   login: 'INITIAL',
   register: 'INITIAL',
 };
 
-const INITIAL_STATE: AuthState= {
+const INITIAL_STATE: AuthState = {
   accessToken: '',
   status: INITIAL_STATUS_STATE,
 };
@@ -69,6 +73,11 @@ const AuthReducer = (state = INITIAL_STATE, action: AuthActionTypes) => {
           ...state.status,
           register: 'FAIL',
         },
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        accessToken: '',
       };
     default:
       return state;

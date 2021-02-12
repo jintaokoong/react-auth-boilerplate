@@ -1,5 +1,13 @@
-import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, REGISTER, REGISTER_FAIL, REGISTER_SUCCESS } from "../../../constants/redux-types";
-import { LoginSuccessResponse } from "../../dto/auth";
+import {
+  LOGIN,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REGISTER,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS,
+} from '../../../constants/redux-types';
+import { LoginSuccessResponse } from '../../dto/auth';
 
 export interface LoginAction {
   type: typeof LOGIN;
@@ -29,4 +37,15 @@ export interface RegisterFailAction {
   error: any;
 }
 
-export type AuthActionTypes = LoginAction | LoginSuccessAction | LoginFailAction | RegisterAction | RegisterSuccessAction | RegisterFailAction;
+export interface LogoutAction {
+  type: typeof LOGOUT;
+}
+
+export type AuthActionTypes =
+  | LoginAction
+  | LoginSuccessAction
+  | LoginFailAction
+  | RegisterAction
+  | RegisterSuccessAction
+  | RegisterFailAction
+  | LogoutAction;
